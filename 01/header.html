@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .desktop {
+            width: 1470px;
+            height: 830px;
+            background-color: red;
+        }
+
+        .rect-shell {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rect {
+            width: 400px;
+            height: 400px;
+            background-color: #ddd;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 220px;
+            /* 120px */
+            background-color: pink;
+            border: 1px solid red;
+        }
+
+        .header-rect-shell {
+            width: 40px;
+            height: 40px;
+            margin: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: margin 0.2s ease;
+        }
+
+        .header-rect {
+            width: 40px;
+            height: 40px;
+            background-color: blue;
+            transition: all 0.2s ease;
+        }
+
+        .test {
+            width: 40px;
+            height: 40px;
+            margin-left: 40px;
+            background-color: red;
+            transition: all 0.2s ease;
+        }
+
+        .test2 {
+            width: 40px;
+            height: 40px;
+            margin-left: 77%;
+            background-color: red;
+            transition: all 0.2s ease;
+        }
+
+        .header-rect-shell:hover .header-rect {
+            width: 35px;
+            height: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="desktop"></div> -->
+    <div class="header">
+        <div class="header-rect-shell">
+            <div class="header-rect"></div>
+        </div>
+        <div class="test"></div>
+        <div class="test2"></div>
+    </div>
+
+    <div class="rect-shell">
+        <div class="rect"></div>
+    </div>
+
+    <script>
+        const headerRectShell = document.querySelector('.header-rect-shell');
+        let isMoved = false;
+
+        headerRectShell.addEventListener('click', function () {
+            if (!isMoved) {
+                headerRectShell.style.marginRight = '0';
+                headerRectShell.style.marginLeft = '80px';
+            } else {
+                headerRectShell.style.marginLeft = '0';
+                headerRectShell.style.marginRight = '80px';
+            }
+            isMoved = !isMoved;
+        });
+    </script>
+</body>
+
+
+<!-- display:column -->
+
+</html>
