@@ -14,9 +14,6 @@
 
         body {
             background-color: #eee;
-        }
-
-        p {
             font-family: system-ui;
             cursor: default;
         }
@@ -24,7 +21,8 @@
         /* Layout */
         .frame-shell {
             width: 100vw;
-            height: 100vh;
+            /* height: 50vh; */
+            margin-top: 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -81,6 +79,7 @@
             /* opacity: 0; */
             filter: blur(5px);
             fill: #09f;
+            z-index: -1;
         }
 
         .glossary-shell:hover .glossary-word {
@@ -89,7 +88,7 @@
         }
 
         .scroll-space {
-            height: 300vh;
+            height: 100vh;
         }
 
         .progress_bar {
@@ -100,9 +99,14 @@
         }
 
         /* Text */
+        h1 {
+            font-size: 2.8em;
+            padding-top: 20px;
+            margin-left: 6%;
+        }
+
         p.glossary-word {
             font-size: 1.8em;
-            z-index: 1;
             opacity: 0;
             transition: all 0.2s ease;
         }
@@ -115,10 +119,12 @@
 
 <body>
     <div class="progress_bar progress_bar--white"></div>
+    <div class="scroll-space" style="height: 50vh;"></div>
+    <h1>Glossary</h1>
     <div class="frame-shell">
         <div class="word-shell">
             <div class="glossary-shell">
-                <p class="glossary-word">Word</p>
+                <p class="glossary-word">Square</p>
                 <svg data-word="Word" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
                     <rect x="0" y="0" width="50" height="50" />
                 </svg>
@@ -133,7 +139,7 @@
 
         <div class="word-shell">
             <div class="glossary-shell">
-                <p class="glossary-word">Testing</p>
+                <p class="glossary-word">Circle</p>
                 <svg data-word="Testing" xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50"
                     fill="none">
                     <circle cx="25.3821" cy="25.0063" r="25" />
@@ -151,7 +157,7 @@
 
         <div class="word-shell">
             <div class="glossary-shell">
-                <p class="glossary-word">Real Big Word</p>
+                <p class="glossary-word">Triangle</p>
                 <svg data-word="Real Big Word" xmlns="http://www.w3.org/2000/svg" width="58" height="50"
                     viewBox="0 0 58 50" fill="none">
                     <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" />
@@ -185,7 +191,6 @@
 
         updateProgressBar();
         document.addEventListener("scroll", updateProgressBar);
-
     </script>
 </body>
 
