@@ -43,10 +43,10 @@
 
         .definition-shell {
             position: absolute;
-            width: 300px;
+            width: 20%;
             top: 0;
             opacity: 0;
-            transition: margin 0.4s ease, opacity 0.2s ease;
+            transition: opacity 0.2s ease;
         }
 
         .left {
@@ -58,7 +58,7 @@
         }
 
         .glossary-shell {
-            width: 150px;
+            width: 200px;
             height: 50px;
             display: flex;
             justify-content: center;
@@ -66,18 +66,44 @@
             z-index: 1;
         }
 
+        .glossary-shell svg {
+            position: absolute;
+            transition: all 0.3s ease;
+            filter: blur(0);
+            fill: black;
+        }
+
         .glossary-shell:hover~.definition-shell {
             opacity: 1;
         }
 
+        .glossary-shell:hover svg {
+            /* opacity: 0; */
+            filter: blur(5px);
+            fill: #09f;
+        }
+
         .glossary-shell:hover .glossary-word {
-            color: #09f;
+            /* color: #09f; */
+            opacity: 1;
+        }
+
+        .scroll-space {
+            height: 300vh;
+        }
+
+        .progress_bar {
+            position: fixed;
+            height: 5px;
+            width: 100%;
+            background-color: #09f;
         }
 
         /* Text */
         p.glossary-word {
-            font-size: 1.4em;
+            font-size: 1.8em;
             z-index: 1;
+            opacity: 0;
             transition: all 0.2s ease;
         }
 
@@ -88,11 +114,13 @@
 </head>
 
 <body>
+    <div class="progress_bar progress_bar--white"></div>
     <div class="frame-shell">
         <div class="word-shell">
             <div class="glossary-shell">
+                <p class="glossary-word">Word</p>
                 <svg data-word="Word" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-                    <rect x="0" y="0" width="50" height="50" fill="black" />
+                    <rect x="0" y="0" width="50" height="50" />
                 </svg>
             </div>
             <div class="definition-shell left">
@@ -105,9 +133,10 @@
 
         <div class="word-shell">
             <div class="glossary-shell">
+                <p class="glossary-word">Testing</p>
                 <svg data-word="Testing" xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50"
                     fill="none">
-                    <circle cx="25.3821" cy="25.0063" r="25" fill="black" />
+                    <circle cx="25.3821" cy="25.0063" r="25" />
                 </svg>
             </div>
             <div class="definition-shell left">
@@ -122,9 +151,10 @@
 
         <div class="word-shell">
             <div class="glossary-shell">
+                <p class="glossary-word">Real Big Word</p>
                 <svg data-word="Real Big Word" xmlns="http://www.w3.org/2000/svg" width="58" height="50"
                     viewBox="0 0 58 50" fill="none">
-                    <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" fill="black" />
+                    <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" />
                 </svg>
             </div>
             <div class="definition-shell left">
@@ -137,32 +167,25 @@
             </div>
         </div>
     </div>
+    <div class="scroll-space"></div>
 
     <script>
-        document.querySelectorAll('.glossary-shell').forEach(shell => {
-            const svg = shell.querySelector('svg');
-            const word = svg.getAttribute('data-word');
-            const wordElement = document.createElement('p');
-            wordElement.textContent = word;
-            wordElement.className = 'glossary-word';
+        // Progress Bar 
+        const progressTag = document.querySelector(".progress_bar");
+        const bodyTag = document.querySelector("body");
 
-            const showWord = () => {
-                svg.style.display = 'none';
-                if (!shell.contains(wordElement)) {
-                    shell.appendChild(wordElement);
-                }
-            };
+        // put it in a function and call on load
+        function updateProgressBar() {
+            const pixelsScrolled = window.scrollY;
+            const pageHeight = bodyTag.getBoundingClientRect().height;
+            const totalScrollableDistance = pageHeight - window.innerHeight;
+            const percentage = pixelsScrolled / totalScrollableDistance;
+            progressTag.style.width = `${percentage * 100}%`;
+        }
 
-            const showSVG = () => {
-                svg.style.display = 'block';
-                if (shell.contains(wordElement)) {
-                    wordElement.remove();
-                }
-            };
+        updateProgressBar();
+        document.addEventListener("scroll", updateProgressBar);
 
-            shell.addEventListener('mouseenter', showWord);
-            shell.addEventListener('mouseleave', showSVG);
-        });
     </script>
 </body>
 
