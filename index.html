@@ -44,7 +44,6 @@
         .definition-shell {
             position: absolute;
             width: 300px;
-            /* margin-right: 500px; */
             top: 0;
             opacity: 0;
             transition: margin 0.4s ease, opacity 0.2s ease;
@@ -60,13 +59,14 @@
 
         .glossary-shell {
             width: 150px;
+            height: 50px;
             display: flex;
             justify-content: center;
+            align-items: center;
             z-index: 1;
         }
 
         .glossary-shell:hover~.definition-shell {
-            /* margin-right: 500px; */
             opacity: 1;
         }
 
@@ -91,7 +91,9 @@
     <div class="frame-shell">
         <div class="word-shell">
             <div class="glossary-shell">
-                <p class="glossary-word">Word</p>
+                <svg data-word="Word" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+                    <rect x="0" y="0" width="50" height="50" fill="black" />
+                </svg>
             </div>
             <div class="definition-shell left">
                 <p class="definition">Left</p>
@@ -103,7 +105,10 @@
 
         <div class="word-shell">
             <div class="glossary-shell">
-                <p class="glossary-word">Testing</p>
+                <svg data-word="Testing" xmlns="http://www.w3.org/2000/svg" width="51" height="50" viewBox="0 0 51 50"
+                    fill="none">
+                    <circle cx="25.3821" cy="25.0063" r="25" fill="black" />
+                </svg>
             </div>
             <div class="definition-shell left">
                 <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id voluptates
@@ -117,7 +122,10 @@
 
         <div class="word-shell">
             <div class="glossary-shell">
-                <p class="glossary-word">Real Big Word</p>
+                <svg data-word="Real Big Word" xmlns="http://www.w3.org/2000/svg" width="58" height="50"
+                    viewBox="0 0 58 50" fill="none">
+                    <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" fill="black" />
+                </svg>
             </div>
             <div class="definition-shell left">
                 <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore nisi eos
@@ -129,6 +137,33 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.glossary-shell').forEach(shell => {
+            const svg = shell.querySelector('svg');
+            const word = svg.getAttribute('data-word');
+            const wordElement = document.createElement('p');
+            wordElement.textContent = word;
+            wordElement.className = 'glossary-word';
+
+            const showWord = () => {
+                svg.style.display = 'none';
+                if (!shell.contains(wordElement)) {
+                    shell.appendChild(wordElement);
+                }
+            };
+
+            const showSVG = () => {
+                svg.style.display = 'block';
+                if (shell.contains(wordElement)) {
+                    wordElement.remove();
+                }
+            };
+
+            shell.addEventListener('mouseenter', showWord);
+            shell.addEventListener('mouseleave', showSVG);
+        });
+    </script>
 </body>
 
 </html>
