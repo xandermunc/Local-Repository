@@ -89,7 +89,7 @@
         }
 
         .scroll-space {
-            height: 100vh;
+            height: 200vh;
         }
 
         .progress_bar {
@@ -97,6 +97,7 @@
             height: 5px;
             width: 100%;
             background-color: #09f;
+            z-index: 1;
         }
 
         /* Text */
@@ -115,6 +116,34 @@
 
         p.definition {
             font-size: 1em;
+        }
+
+        .header-shell {
+            padding-top: 40px;
+            padding-right: 6%;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            transition: color .3s;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 11;
+        }
+
+        /* .header-blur {
+            position: absolute;
+            top: 40px;
+            width: 60px;
+            height: 60px;
+            z-index: 5;
+            background-color: white;
+            filter: blur(5px);
+            opacity: 1;
+        } */
+
+        .header-text {
+            position: relative;
+            z-index: 11;
         }
 
         /* Mobile View */
@@ -176,7 +205,7 @@
             }
 
             .definition-shell {
-                width: 350px;
+                width: 250px;
                 position: static;
                 margin-bottom: 10px;
                 opacity: 1;
@@ -217,11 +246,23 @@
 <body>
     <div class="progress_bar progress_bar--white"></div>
 
+    <header class="header-shell">
+        <div>
+            <div class="header-text">
+                <p id="header-top" class="section_title">Top</p>
+                <p id="header-glossary">Glossary</p>
+                <p id="header-bottom">Bottom</p>
+            </div>
+            <div class="header-blur"></div>
+            <!-- <p id="pixel_count">0</p> -->
+        </div>
+    </header>
+
     <!-- Desktop -->
     <div class="desktop-view">
-        <div class="scroll-space" style="height: 50vh;"></div>
+        <div class="scroll-space section" data-section="1" style="height: 100vh;"></div>
         <h1>Glossary</h1>
-        <div class="frame-shell">
+        <div class="frame-shell section" data-section="2">
             <div class="word-shell">
                 <div class="glossary-shell">
                     <p class="glossary-word">Square</p>
@@ -277,14 +318,14 @@
                 </div>
             </div>
         </div>
-        <div class="scroll-space"></div>
+        <div class="scroll-space section" data-section="3"></div>
     </div>
 
     <!-- Mobile -->
     <div class="mobile-view">
-        <div class="scroll-space" style="height: 50vh;"></div>
+        <div class="scroll-space section" data-section="Top" style="height: 50vh;"></div>
         <h1>Glossary</h1>
-        <div class="frame-shell">
+        <div class="frame-shell section" data-section="Glossary">
             <div class="word-shell-mobile">
                 <div class="glossary-shell">
                     <p class="glossary-word">Square</p>
@@ -340,7 +381,7 @@
                 </div>
             </div>
         </div>
-        <div class="scroll-space"></div>
+        <div class="scroll-space section" data-section="Bottom"></div>
     </div>
 
 
@@ -360,6 +401,15 @@
 
         updateProgressBar();
         document.addEventListener("scroll", updateProgressBar);
+
+        // Pixel Count
+        const pixelsTag = document.querySelector("#pixel_count");
+
+        document.addEventListener("scroll", function () {
+            const pixelsScrolled = window.scrollY;
+            pixelsTag.innerHTML = Math.floor(pixelsScrolled);
+            // console.log(pixelsScrolled);
+        });
 
         // SVG hover state Mobile
         function updateHoverState() {
@@ -391,6 +441,18 @@
         window.addEventListener("resize", updateHoverState);
         window.addEventListener("load", updateHoverState);
 
+        // Header Text
+        const sectionTitle = document.querySelector(".section_title");
+        const sections = document.querySelectorAll(".section");
+
+        document.addEventListener("scroll", function () {
+            const pixelsScrolled = window.scrollY;
+            sections.forEach((section) => {
+                if (section.offsetTop <= pixelsScrolled) {
+                    sectionTitle.innerHTML = section.getAttribute("data-section");
+                }
+            });
+        });
     </script>
 </body>
 
