@@ -156,7 +156,6 @@
         }
 
         @media (max-width: 500px) {
-
             .frame-shell {
                 width: 100vw;
                 /* height: 50vh; */
@@ -172,7 +171,7 @@
                 margin-left: 12%;
                 position: relative;
                 display: block;
-                margin-bottom: 20px;
+                margin-bottom: 60px;
                 /* background-color: red; */
             }
 
@@ -183,7 +182,7 @@
                 justify-content: left;
                 left: 0;
                 z-index: 1;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
                 /* background-color: blue; */
             }
 
@@ -196,7 +195,8 @@
             }
 
             .definition-shell {
-                width: 250px;
+                width: 300px; 
+                /* previously 250px w/ header */
                 position: static;
                 margin-bottom: 10px;
                 opacity: 1;
@@ -237,20 +237,20 @@
 <body>
     <div class="progress_bar progress_bar--white"></div>
 
-    <header class="header-shell">
-        <div>
-            <div class="header-text">
-                <p id="top-header">Top</p>
-                <p id="glossary-header">Glossary</p>
-                <p id="bottom-header">Bottom</p>
-            </div>
-            <div class="header-blur"></div>
-            <!-- <p id="pixel_count">0</p> -->
-        </div>
-    </header>
-
     <!-- Desktop -->
     <div class="desktop-view">
+        <header class="header-shell">
+            <div>
+                <div class="header-text">
+                    <p id="top-header">Top</p>
+                    <p id="glossary-header">Glossary</p>
+                    <p id="bottom-header">Bottom</p>
+                </div>
+                <div class="header-blur"></div>
+                <!-- <p id="pixel_count">0</p> -->
+            </div>
+        </header>
+
         <section class="top-section" id="top">
             <div class="scroll-space" style="height: 100vh;"></div>
         </section>
