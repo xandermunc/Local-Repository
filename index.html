@@ -97,7 +97,7 @@
             height: 5px;
             width: 100%;
             background-color: #09f;
-            z-index: 1;
+            z-index: 10;
         }
 
         /* Text */
@@ -118,8 +118,12 @@
             font-size: 1em;
         }
 
+        p {
+            transition: all 0.2s ease;
+        }
+
         .header-shell {
-            padding-top: 40px;
+            padding-top: 80px;
             padding-right: 6%;
             width: 100vw;
             height: 100vh;
@@ -127,23 +131,10 @@
             transition: color .3s;
             display: flex;
             justify-content: flex-end;
-            z-index: 11;
         }
-
-        /* .header-blur {
-            position: absolute;
-            top: 40px;
-            width: 60px;
-            height: 60px;
-            z-index: 5;
-            background-color: white;
-            filter: blur(5px);
-            opacity: 1;
-        } */
 
         .header-text {
             position: relative;
-            z-index: 11;
         }
 
         /* Mobile View */
@@ -249,9 +240,9 @@
     <header class="header-shell">
         <div>
             <div class="header-text">
-                <p id="header-top" class="section_title">Top</p>
-                <p id="header-glossary">Glossary</p>
-                <p id="header-bottom">Bottom</p>
+                <p id="top-header">Top</p>
+                <p id="glossary-header">Glossary</p>
+                <p id="bottom-header">Bottom</p>
             </div>
             <div class="header-blur"></div>
             <!-- <p id="pixel_count">0</p> -->
@@ -260,128 +251,150 @@
 
     <!-- Desktop -->
     <div class="desktop-view">
-        <div class="scroll-space section" data-section="1" style="height: 100vh;"></div>
-        <h1>Glossary</h1>
-        <div class="frame-shell section" data-section="2">
-            <div class="word-shell">
-                <div class="glossary-shell">
-                    <p class="glossary-word">Square</p>
-                    <svg data-word="Word" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-                        <rect x="0" y="0" width="50" height="50" />
-                    </svg>
-                </div>
-                <div class="definition-shell left">
-                    <p class="definition">Left</p>
-                </div>
-                <div class="definition-shell right">
-                    <p class="definition">Right</p>
-                </div>
-            </div>
+        <section class="top-section" id="top">
+            <div class="scroll-space" style="height: 100vh;"></div>
+        </section>
 
-            <div class="word-shell">
-                <div class="glossary-shell">
-                    <p class="glossary-word">Circle</p>
-                    <svg data-word="Testing" xmlns="http://www.w3.org/2000/svg" width="51" height="50"
-                        viewBox="0 0 51 50" fill="none">
-                        <circle cx="25.3821" cy="25.0063" r="25" />
-                    </svg>
+        <section class="glossary-section" id="glossary">
+            <h1>Glossary</h1>
+            <div class="frame-shell">
+                <div class="word-shell">
+                    <div class="glossary-shell">
+                        <p class="glossary-word">Square</p>
+                        <svg data-word="Word" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                            viewBox="0 0 50 50">
+                            <rect x="0" y="0" width="50" height="50" />
+                        </svg>
+                    </div>
+                    <div class="definition-shell left">
+                        <p class="definition">Left</p>
+                    </div>
+                    <div class="definition-shell right">
+                        <p class="definition">Right</p>
+                    </div>
                 </div>
-                <div class="definition-shell left">
-                    <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
-                        voluptates
-                        minus sunt dolores earum!</p>
-                </div>
-                <div class="definition-shell right">
-                    <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
-                        voluptates
-                        minus sunt dolores earum!</p>
-                </div>
-            </div>
 
-            <div class="word-shell">
-                <div class="glossary-shell">
-                    <p class="glossary-word">Triangle</p>
-                    <svg data-word="Real Big Word" xmlns="http://www.w3.org/2000/svg" width="58" height="50"
-                        viewBox="0 0 58 50" fill="none">
-                        <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" />
-                    </svg>
+                <div class="word-shell">
+                    <div class="glossary-shell">
+                        <p class="glossary-word">Circle</p>
+                        <svg data-word="Testing" xmlns="http://www.w3.org/2000/svg" width="51" height="50"
+                            viewBox="0 0 51 50" fill="none">
+                            <circle cx="25.3821" cy="25.0063" r="25" />
+                        </svg>
+                    </div>
+                    <div class="definition-shell left">
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
+                            voluptates
+                            minus sunt dolores earum!</p>
+                    </div>
+                    <div class="definition-shell right">
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
+                            voluptates
+                            minus sunt dolores earum!</p>
+                    </div>
                 </div>
-                <div class="definition-shell left">
-                    <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore nisi
-                        eos
-                        dolorum adipisci vero. Ducimus magnam nisi est facere?</p>
-                </div>
-                <div class="definition-shell right">
-                    <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore nisi
-                        eos
-                        dolorum adipisci vero. Ducimus magnam nisi est facere?</p>
+
+                <div class="word-shell">
+                    <div class="glossary-shell">
+                        <p class="glossary-word">Triangle</p>
+                        <svg data-word="Real Big Word" xmlns="http://www.w3.org/2000/svg" width="58" height="50"
+                            viewBox="0 0 58 50" fill="none">
+                            <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" />
+                        </svg>
+                    </div>
+                    <div class="definition-shell left">
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore
+                            nisi
+                            eos
+                            dolorum adipisci vero. Ducimus magnam nisi est facere?</p>
+                    </div>
+                    <div class="definition-shell right">
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore
+                            nisi
+                            eos
+                            dolorum adipisci vero. Ducimus magnam nisi est facere?</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="scroll-space section" data-section="3"></div>
+        </section>
+
+        <section class="bottom-section" id="bottom">
+            <div class="scroll-space"></div>
+        </section>
     </div>
 
     <!-- Mobile -->
     <div class="mobile-view">
-        <div class="scroll-space section" data-section="Top" style="height: 50vh;"></div>
-        <h1>Glossary</h1>
-        <div class="frame-shell section" data-section="Glossary">
-            <div class="word-shell-mobile">
-                <div class="glossary-shell">
-                    <p class="glossary-word">Square</p>
-                    <svg data-word="Word" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
-                        <rect x="0" y="0" width="50" height="50" />
-                    </svg>
-                </div>
-                <div class="definition-shell left">
-                    <p class="definition">Left</p>
-                </div>
-                <div class="definition-shell right">
-                    <p class="definition">Right</p>
-                </div>
-            </div>
+        <section class="top-section" id="top">
+            <div class="scroll-space" style="height: 50vh;"></div>
+        </section>
 
-            <div class="word-shell-mobile">
-                <div class="glossary-shell">
-                    <p class="glossary-word">Circle</p>
-                    <svg data-word="Testing" xmlns="http://www.w3.org/2000/svg" width="51" height="50"
-                        viewBox="0 0 51 50" fill="none">
-                        <circle cx="25.3821" cy="25.0063" r="25" />
-                    </svg>
+        <section class="glossary-section" id="glossary">
+            <h1>Glossary</h1>
+            <div class="frame-shell">
+                <div class="word-shell-mobile">
+                    <div class="glossary-shell">
+                        <p class="glossary-word">Square</p>
+                        <svg data-word="Word" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                            viewBox="0 0 50 50">
+                            <rect x="0" y="0" width="50" height="50" />
+                        </svg>
+                    </div>
+                    <div class="definition-shell left">
+                        <p class="definition">Left</p>
+                    </div>
+                    <div class="definition-shell right">
+                        <p class="definition">Right</p>
+                    </div>
                 </div>
-                <div class="definition-shell left">
-                    <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
-                        voluptates
-                        minus sunt dolores earum!</p>
-                </div>
-                <div class="definition-shell right">
-                    <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
-                        voluptates
-                        minus sunt dolores earum!</p>
-                </div>
-            </div>
 
-            <div class="word-shell-mobile">
-                <div class="glossary-shell">
-                    <p class="glossary-word">Triangle</p>
-                    <svg data-word="Real Big Word" xmlns="http://www.w3.org/2000/svg" width="58" height="50"
-                        viewBox="0 0 58 50" fill="none">
-                        <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" />
-                    </svg>
+                <div class="word-shell-mobile">
+                    <div class="glossary-shell">
+                        <p class="glossary-word">Circle</p>
+                        <svg data-word="Testing" xmlns="http://www.w3.org/2000/svg" width="51" height="50"
+                            viewBox="0 0 51 50" fill="none">
+                            <circle cx="25.3821" cy="25.0063" r="25" />
+                        </svg>
+                    </div>
+                    <div class="definition-shell left">
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
+                            voluptates
+                            minus sunt dolores earum!</p>
+                    </div>
+                    <div class="definition-shell right">
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
+                            voluptates
+                            minus sunt dolores earum!</p>
+                    </div>
                 </div>
-                <div class="definition-shell left">
-                    <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore nisi
-                        eos
-                        dolorum adipisci vero. Ducimus magnam nisi est facere?</p>
-                </div>
-                <div class="definition-shell right">
-                    <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore nisi
-                        eos
-                        dolorum adipisci vero. Ducimus magnam nisi est facere?</p>
+
+                <div class="word-shell-mobile">
+                    <div class="glossary-shell">
+                        <p class="glossary-word">Triangle</p>
+                        <svg data-word="Real Big Word" xmlns="http://www.w3.org/2000/svg" width="58" height="50"
+                            viewBox="0 0 58 50" fill="none">
+                            <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" />
+                        </svg>
+                    </div>
+                    <div class="definition-shell left">
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore
+                            nisi
+                            eos
+                            dolorum adipisci vero. Ducimus magnam nisi est facere?</p>
+                    </div>
+                    <div class="definition-shell right">
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore
+                            nisi
+                            eos
+                            dolorum adipisci vero. Ducimus magnam nisi est facere?</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="scroll-space section" data-section="Bottom"></div>
+        </section>
+
+        <section class="bottom-section" id="bottom">
+            <div class="scroll-space"></div>
+        </section>
     </div>
 
 
@@ -442,14 +455,24 @@
         window.addEventListener("load", updateHoverState);
 
         // Header Text
-        const sectionTitle = document.querySelector(".section_title");
-        const sections = document.querySelectorAll(".section");
+        const sections = document.querySelectorAll("section");
+        const headers = {
+            top: document.getElementById("top-header"),
+            glossary: document.getElementById("glossary-header"),
+            bottom: document.getElementById("bottom-header"),
+        };
+
+        const offset = 100;
 
         document.addEventListener("scroll", function () {
             const pixelsScrolled = window.scrollY;
+
             sections.forEach((section) => {
-                if (section.offsetTop <= pixelsScrolled) {
-                    sectionTitle.innerHTML = section.getAttribute("data-section");
+                if (section.offsetTop <= pixelsScrolled + offset && section.offsetTop + section.offsetHeight > pixelsScrolled + offset) {
+                    Object.values(headers).forEach(header => {
+                        header.style.color = "black";
+                    });
+                    headers[section.id].style.color = "#09f";
                 }
             });
         });
