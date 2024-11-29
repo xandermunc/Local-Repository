@@ -145,13 +145,12 @@
             transition: left 0.2s ease;
         }
 
-        p.header-text-hover:hover {
+        .header-text-hover-shell:hover .header-text-hover {
             left: -10px;
         }
 
         p.header-text-hover.active {
             left: -10px;
-            /* Shift 10 pixels to the left when active */
         }
 
         .absolute {
@@ -301,9 +300,15 @@
         <div class="progress_bar progress_bar--white"></div>
         <header class="header-shell">
             <div class="header-text">
-                <p class="header-text-hover" id="top-header">Top</p>
-                <p class="header-text-hover" id="glossary-header">Glossary</p>
-                <p class="header-text-hover" id="bottom-header">Bottom</p>
+                <div class="header-text-hover-shell">
+                    <p class="header-text-hover" id="top-header">Top</p>
+                </div>
+                <div class="header-text-hover-shell">
+                    <p class="header-text-hover" id="glossary-header">Glossary</p>
+                </div>
+                <div class="header-text-hover-shell">
+                    <p class="header-text-hover" id="bottom-header">Bottom</p>
+                </div>
             </div>
         </header>
 
@@ -617,8 +622,8 @@
 
         headerTextHovers.forEach(headerText => {
             headerText.addEventListener('click', (event) => {
-                event.stopPropagation(); 
-                headerText.classList.toggle('active'); 
+                event.stopPropagation();
+                headerText.classList.toggle('active');
                 setTimeout(() => {
                     headerText.classList.remove('active');
                 }, 500);
