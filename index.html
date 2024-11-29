@@ -21,7 +21,6 @@
         /* Layout */
         .frame-shell {
             width: 100vw;
-            /* height: 50vh; */
             margin-top: 100px;
             display: flex;
             flex-direction: column;
@@ -77,14 +76,12 @@
         }
 
         .glossary-shell:hover svg {
-            /* opacity: 0; */
             filter: blur(5px);
             fill: #09f;
             z-index: -1;
         }
 
         .glossary-shell:hover .glossary-word {
-            /* color: #09f; */
             opacity: 1;
         }
 
@@ -167,7 +164,6 @@
         @media (max-width: 500px) {
             .frame-shell {
                 width: 100vw;
-                /* height: 50vh; */
                 margin-top: 100px;
                 display: block;
                 flex-direction: column;
@@ -181,26 +177,37 @@
                 position: relative;
                 display: block;
                 margin-bottom: 60px;
-                /* background-color: red; */
             }
 
-            .glossary-shell {
-                /* width: 200px; */
-                height: 50px;
-                display: flex;
-                justify-content: left;
-                left: 0;
-                z-index: 1;
+            .glossary-shell-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
                 margin-bottom: 20px;
-                /* background-color: blue; */
+                width: 76vw;
             }
 
-            .glossary-shell svg {
+            .mobile-grid-left {
+                display: flex;
+                justify-self: left;
+                align-items: center;
+            }
+
+            .mobile-grid-middle {
+                display: flex;
+                justify-self: center;
+            }
+
+            .mobile-grid-middle:hover svg {
+                filter: blur(5px);
+                fill: #09f;
+                z-index: -1;
+            }
+
+            .mobile-grid-middle svg {
                 position: relative;
                 transition: all 0.3s ease;
                 filter: blur(0);
                 fill: black;
-                margin-left: 20px;
             }
 
             .definition-shell {
@@ -224,30 +231,18 @@
             }
 
             /* Mobile Hover */
-            .glossary-shell.hover svg {
+            .mobile-grid-middle.hover svg {
                 filter: blur(5px);
                 fill: #09f;
                 z-index: -1;
             }
 
-            /* .glossary-shell.hover .glossary-word {
-                opacity: 1;
-            }
-
-            .glossary-shell.hover~.definition-shell {
-                opacity: 1;
-            } */
-
             .header-shell-mobile {
-                /* padding-top: 80px; */
-                /* padding-right: 6%; */
                 width: 100vw;
-                /* height: 100vh; */
                 position: fixed;
                 transition: color .3s;
                 display: flex;
                 justify-content: center;
-                /* background-color: red; */
                 z-index: 9;
             }
 
@@ -256,7 +251,6 @@
                 display: grid;
                 margin-top: 10px;
                 grid-template-columns: repeat(3, 1fr);
-                /* background-color: blue; */
             }
 
             .header-text-shell-mobile {
@@ -287,10 +281,9 @@
 </head>
 
 <body>
-    <div class="progress_bar progress_bar--white"></div>
-
     <!-- Desktop -->
     <div class="desktop-view">
+        <div class="progress_bar progress_bar--white"></div>
         <header class="header-shell">
             <div class="header-text">
                 <p id="top-header">Top</p>
@@ -401,12 +394,16 @@
             <h1>Glossary</h1>
             <div class="frame-shell">
                 <div class="word-shell-mobile">
-                    <div class="glossary-shell">
-                        <p class="glossary-word">Square</p>
-                        <svg data-word="Word" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
-                            viewBox="0 0 50 50">
-                            <rect x="0" y="0" width="50" height="50" />
-                        </svg>
+                    <div class="glossary-shell-grid">
+                        <div class="mobile-grid-left">
+                            <p class="glossary-word">Square</p>
+                        </div>
+                        <div class="mobile-grid-middle">
+                            <svg data-word="Word" xmlns="http://www.w3.org/2000/svg" width="50" height="50"
+                                viewBox="0 0 50 50">
+                                <rect x="0" y="0" width="50" height="50" />
+                            </svg>
+                        </div>
                     </div>
                     <div class="definition-shell left">
                         <p class="definition">Left</p>
@@ -417,12 +414,16 @@
                 </div>
 
                 <div class="word-shell-mobile">
-                    <div class="glossary-shell">
-                        <p class="glossary-word">Circle</p>
-                        <svg data-word="Testing" xmlns="http://www.w3.org/2000/svg" width="51" height="50"
-                            viewBox="0 0 51 50" fill="none">
-                            <circle cx="25.3821" cy="25.0063" r="25" />
-                        </svg>
+                    <div class="glossary-shell-grid">
+                        <div class="mobile-grid-left">
+                            <p class="glossary-word">Circle</p>
+                        </div>
+                        <div class="mobile-grid-middle">
+                            <svg data-word="Testing" xmlns="http://www.w3.org/2000/svg" width="51" height="50"
+                                viewBox="0 0 51 50">
+                                <circle cx="25.3821" cy="25.0063" r="25" />
+                            </svg>
+                        </div>
                     </div>
                     <div class="definition-shell left">
                         <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati id
@@ -437,12 +438,16 @@
                 </div>
 
                 <div class="word-shell-mobile">
-                    <div class="glossary-shell">
-                        <p class="glossary-word">Triangle</p>
-                        <svg data-word="Real Big Word" xmlns="http://www.w3.org/2000/svg" width="58" height="50"
-                            viewBox="0 0 58 50" fill="none">
-                            <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" />
-                        </svg>
+                    <div class="glossary-shell-grid">
+                        <div class="mobile-grid-left">
+                            <p class="glossary-word">Triangle</p>
+                        </div>
+                        <div class="mobile-grid-middle">
+                            <svg data-word="Real Big Word" xmlns="http://www.w3.org/2000/svg" width="58" height="50"
+                                viewBox="0 0 58 50">
+                                <path d="M29.0837 0.0062561L57.9512 50.0063H0.216187L29.0837 0.0062561Z" />
+                            </svg>
+                        </div>
                     </div>
                     <div class="definition-shell left">
                         <p class="definition">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint, dolore
@@ -485,7 +490,7 @@
 
         // SVG hover state Mobile
         function updateHoverState() {
-            const glossaryItems = document.querySelectorAll(".glossary-shell");
+            const glossaryItems = document.querySelectorAll(".mobile-grid-middle");
             const viewportCenter = window.innerHeight / 2;
 
             let closestItem = null;
@@ -533,13 +538,11 @@
             const pixelsScrolled = window.scrollY;
             sections.forEach((section) => {
                 if (section.offsetTop <= pixelsScrolled + offset && section.offsetTop + section.offsetHeight > pixelsScrolled + offset) {
-                    // Update desktop headers
                     Object.values(headers).forEach((header) => {
                         header.style.color = "black";
                     });
                     headers[section.id].style.color = "#09f";
 
-                    // Update mobile headers
                     Object.values(headersMobile).forEach((header) => {
                         header.style.color = "black";
                     });
