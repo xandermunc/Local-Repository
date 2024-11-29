@@ -139,6 +139,21 @@
             position: relative;
         }
 
+        p.header-text-hover {
+            position: relative;
+            left: 0;
+            transition: left 0.2s ease;
+        }
+
+        p.header-text-hover:hover {
+            left: -10px;
+        }
+
+        p.header-text-hover.active {
+            left: -10px;
+            /* Shift 10 pixels to the left when active */
+        }
+
         .absolute {
             position: absolute;
         }
@@ -286,9 +301,9 @@
         <div class="progress_bar progress_bar--white"></div>
         <header class="header-shell">
             <div class="header-text">
-                <p id="top-header">Top</p>
-                <p id="glossary-header">Glossary</p>
-                <p id="bottom-header">Bottom</p>
+                <p class="header-text-hover" id="top-header">Top</p>
+                <p class="header-text-hover" id="glossary-header">Glossary</p>
+                <p class="header-text-hover" id="bottom-header">Bottom</p>
             </div>
         </header>
 
@@ -312,10 +327,16 @@
                         </svg>
                     </div>
                     <div class="definition-shell left">
-                        <p class="definition">Left</p>
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta facilis
+                            commodi modi quia natus! Autem impedit quae a. Enim vel perspiciatis eum totam nisi
+                            doloremque ut blanditiis unde aperiam amet quia, ipsum quidem eveniet libero animi aliquid
+                            officia nemo velit.</p>
                     </div>
                     <div class="definition-shell right">
-                        <p class="definition">Right</p>
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quisquam
+                            vero, voluptatum ullam adipisci omnis illum. Deleniti, pariatur maiores autem eos error
+                            exercitationem, veritatis maxime et rem similique nostrum ex eveniet fugiat cum magnam
+                            provident? Maiores suscipit quisquam earum unde!</p>
                     </div>
                 </div>
 
@@ -386,11 +407,11 @@
             <div class="header-white-mobile"></div>
         </header>
 
-        <section class="top-section" id="top">
+        <section class="top-section-mobile" id="top">
             <div class="scroll-space" style="height: 50vh;"></div>
         </section>
 
-        <section class="glossary-section" id="glossary">
+        <section class="glossary-section-mobile" id="glossary">
             <h1>Glossary</h1>
             <div class="frame-shell">
                 <div class="word-shell-mobile">
@@ -406,10 +427,16 @@
                         </div>
                     </div>
                     <div class="definition-shell left">
-                        <p class="definition">Left</p>
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta facilis
+                            commodi modi quia natus! Autem impedit quae a. Enim vel perspiciatis eum totam nisi
+                            doloremque ut blanditiis unde aperiam amet quia, ipsum quidem eveniet libero animi aliquid
+                            officia nemo velit.</p>
                     </div>
                     <div class="definition-shell right">
-                        <p class="definition">Right</p>
+                        <p class="definition">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro voluptas
+                            temporibus nostrum corrupti iusto aspernatur suscipit nihil vero nobis ipsam aliquid
+                            perspiciatis at magni pariatur sequi exercitationem deserunt eos vel, praesentium explicabo?
+                            Consectetur aspernatur a quaerat amet exercitationem voluptatibus at!</p>
                     </div>
                 </div>
 
@@ -465,7 +492,7 @@
             </div>
         </section>
 
-        <section class="bottom-section" id="bottom">
+        <section class="bottom-section-mobile" id="bottom">
             <div class="scroll-space"></div>
         </section>
     </div>
@@ -552,6 +579,51 @@
         }
 
         document.addEventListener("scroll", updateHeaders);
+
+        // Mobile scroll on click function
+        document.getElementById('top-header-mobile').addEventListener('click', function () {
+            const section = document.querySelector('.top-section-mobile');
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('glossary-header-mobile').addEventListener('click', function () {
+            const section = document.querySelector('.glossary-section-mobile');
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('bottom-header-mobile').addEventListener('click', function () {
+            const section = document.querySelector('.bottom-section-mobile');
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Desktop scroll on click function 
+        document.getElementById('top-header').addEventListener('click', function () {
+            const section = document.querySelector('.top-section');
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('glossary-header').addEventListener('click', function () {
+            const section = document.querySelector('.glossary-section');
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('bottom-header').addEventListener('click', function () {
+            const section = document.querySelector('.bottom-section');
+            section.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // header hover 
+        const headerTextHovers = document.querySelectorAll('.header-text-hover');
+
+        headerTextHovers.forEach(headerText => {
+            headerText.addEventListener('click', (event) => {
+                event.stopPropagation(); 
+                headerText.classList.toggle('active'); 
+                setTimeout(() => {
+                    headerText.classList.remove('active');
+                }, 500);
+            });
+        });
 
     </script>
 </body>
