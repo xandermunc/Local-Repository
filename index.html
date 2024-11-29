@@ -195,8 +195,7 @@
             }
 
             .definition-shell {
-                width: 300px; 
-                /* previously 250px w/ header */
+                width: 300px;
                 position: static;
                 margin-bottom: 10px;
                 opacity: 1;
@@ -222,14 +221,58 @@
                 z-index: -1;
             }
 
-            .glossary-shell.hover .glossary-word {
+            /* .glossary-shell.hover .glossary-word {
                 opacity: 1;
             }
 
             .glossary-shell.hover~.definition-shell {
                 opacity: 1;
+            } */
+
+            .header-shell-mobile {
+                /* padding-top: 80px; */
+                /* padding-right: 6%; */
+                width: 100vw;
+                /* height: 100vh; */
+                position: fixed;
+                transition: color .3s;
+                display: flex;
+                justify-content: center;
+                /* background-color: red; */
+                z-index: 10;
             }
 
+            .header-text-mobile {
+                width: 88%;
+                display: grid;
+                margin-top: 10px;
+                grid-template-columns: repeat(3, 1fr);
+                /* background-color: blue; */
+            }
+
+            .header-text-shell-mobile {
+                display: flex;
+                justify-self: center;
+            }
+
+            .header-blur-mobile {
+                position: absolute;
+                background-color: #eee;
+                padding-top: 10px;
+                width: 120vw;
+                height: 40px;
+                z-index: -1;
+                filter: blur(5px);
+            }
+
+            .header-white-mobile {
+                position: absolute;
+                background-color: #eee;
+                padding-top: 10px;
+                width: 120vw;
+                height: 20px;
+                z-index: -2;
+            }
         }
     </style>
 </head>
@@ -240,14 +283,10 @@
     <!-- Desktop -->
     <div class="desktop-view">
         <header class="header-shell">
-            <div>
-                <div class="header-text">
-                    <p id="top-header">Top</p>
-                    <p id="glossary-header">Glossary</p>
-                    <p id="bottom-header">Bottom</p>
-                </div>
-                <div class="header-blur"></div>
-                <!-- <p id="pixel_count">0</p> -->
+            <div class="header-text">
+                <p id="top-header">Top</p>
+                <p id="glossary-header">Glossary</p>
+                <p id="bottom-header">Bottom</p>
             </div>
         </header>
 
@@ -325,6 +364,22 @@
 
     <!-- Mobile -->
     <div class="mobile-view">
+        <header class="header-shell-mobile">
+            <div class="header-text-mobile">
+                <div class="header-text-shell-mobile">
+                    <p id="top-header-mobile">Top</p>
+                </div>
+                <div class="header-text-shell-mobile">
+                    <p id="glossary-header-mobile">Glossary</p>
+                </div>
+                <div class="header-text-shell-mobile">
+                    <p id="bottom-header-mobile">Bottom</p>
+                </div>
+            </div>
+            <div class="header-blur-mobile"></div>
+            <div class="header-white-mobile"></div>
+        </header>
+
         <section class="top-section" id="top">
             <div class="scroll-space" style="height: 50vh;"></div>
         </section>
@@ -460,11 +515,14 @@
             top: document.getElementById("top-header"),
             glossary: document.getElementById("glossary-header"),
             bottom: document.getElementById("bottom-header"),
+            topMobile: document.getElementById("top-header-mobile"),
+            glossaryMobile: document.getElementById("glossary-header-mobile"),
+            bottomMobile: document.getElementById("bottom-header-mobile"),
         };
 
         const offset = 100;
 
-        document.addEventListener("scroll", function () {
+        function updateHeader() {
             const pixelsScrolled = window.scrollY;
 
             sections.forEach((section) => {
@@ -475,7 +533,9 @@
                     headers[section.id].style.color = "#09f";
                 }
             });
-        });
+        }
+
+        document.addEventListener("scroll", updateHeader);
     </script>
 </body>
 

@@ -1,0 +1,5 @@
+// Glossary 
+
+Waves
+Harmony 
+Circles 
