@@ -114,6 +114,11 @@
             transition: all 0.2s ease;
         }
 
+        p.light-sound-word {
+            font-size: 1.8em;
+            transition: all 0.2s ease;
+        }
+
         p.definition {
             font-size: 1em;
         }
@@ -135,6 +140,10 @@
 
         .header-text {
             position: relative;
+        }
+
+        .absolute {
+            position: absolute;
         }
 
         /* Mobile View */
@@ -239,7 +248,7 @@
                 display: flex;
                 justify-content: center;
                 /* background-color: red; */
-                z-index: 10;
+                z-index: 9;
             }
 
             .header-text-mobile {
@@ -296,6 +305,10 @@
 
         <section class="glossary-section" id="glossary">
             <h1>Glossary</h1>
+            <div class="frame-shell">
+                <p class="left absolute light-sound-word">Light</p>
+                <p class="right absolute light-sound-word">Sound</p>
+            </div>
             <div class="frame-shell">
                 <div class="word-shell">
                     <div class="glossary-shell">
@@ -470,15 +483,6 @@
         updateProgressBar();
         document.addEventListener("scroll", updateProgressBar);
 
-        // Pixel Count
-        const pixelsTag = document.querySelector("#pixel_count");
-
-        document.addEventListener("scroll", function () {
-            const pixelsScrolled = window.scrollY;
-            pixelsTag.innerHTML = Math.floor(pixelsScrolled);
-            // console.log(pixelsScrolled);
-        });
-
         // SVG hover state Mobile
         function updateHoverState() {
             const glossaryItems = document.querySelectorAll(".glossary-shell");
@@ -515,27 +519,37 @@
             top: document.getElementById("top-header"),
             glossary: document.getElementById("glossary-header"),
             bottom: document.getElementById("bottom-header"),
-            topMobile: document.getElementById("top-header-mobile"),
-            glossaryMobile: document.getElementById("glossary-header-mobile"),
-            bottomMobile: document.getElementById("bottom-header-mobile"),
+        };
+
+        const headersMobile = {
+            top: document.getElementById("top-header-mobile"),
+            glossary: document.getElementById("glossary-header-mobile"),
+            bottom: document.getElementById("bottom-header-mobile"),
         };
 
         const offset = 100;
 
-        function updateHeader() {
+        function updateHeaders() {
             const pixelsScrolled = window.scrollY;
-
             sections.forEach((section) => {
                 if (section.offsetTop <= pixelsScrolled + offset && section.offsetTop + section.offsetHeight > pixelsScrolled + offset) {
-                    Object.values(headers).forEach(header => {
+                    // Update desktop headers
+                    Object.values(headers).forEach((header) => {
                         header.style.color = "black";
                     });
                     headers[section.id].style.color = "#09f";
+
+                    // Update mobile headers
+                    Object.values(headersMobile).forEach((header) => {
+                        header.style.color = "black";
+                    });
+                    headersMobile[section.id].style.color = "#09f";
                 }
             });
         }
 
-        document.addEventListener("scroll", updateHeader);
+        document.addEventListener("scroll", updateHeaders);
+
     </script>
 </body>
 
