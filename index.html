@@ -129,11 +129,13 @@
             padding-top: 80px;
             padding-right: 6%;
             width: 100vw;
-            height: 100vh;
+            /* height: 100vh; */
             position: fixed;
             transition: color .3s;
             display: flex;
             justify-content: flex-end;
+            z-index: 100;
+            /* background-color: red; */
         }
 
         .header-text {
@@ -351,6 +353,28 @@
         .glossary-shell {
             overflow: visible;
         }
+
+        .sound-trigger,
+        .trigger,
+        .third-trigger {
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            /* background-color: #09f; */
+        }
+
+        .column {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -472,14 +496,19 @@
                     </div>
                 </div>
             </div>
+
             <div class="frame-shell">
-                <div class="svg-mask">
-                    <svg class="animated-svg" xmlns="http://www.w3.org/2000/svg" width="606" height="141"
-                        viewBox="0 0 606 141" fill="none">
-                        <path
-                            d="M3.29651 70.5205C3.29651 70.5205 18.283 3.08124 40.7628 3.08124C63.2425 3.08124 78.229 70.5205 78.229 70.5205C78.229 70.5205 93.2156 137.96 115.695 137.96C138.175 137.96 153.162 70.5205 153.162 70.5205C153.162 70.5205 168.148 3.08124 190.628 3.08124C213.108 3.08124 228.094 70.5205 228.094 70.5205C228.094 70.5205 243.081 137.96 265.56 137.96C288.04 137.96 303.027 70.5205 303.027 70.5205C303.027 70.5205 318.013 3.08124 340.493 3.08124C362.973 3.08124 377.959 70.5205 377.959 70.5205C377.959 70.5205 392.946 137.96 415.425 137.96C437.905 137.96 452.892 70.5205 452.892 70.5205C452.892 70.5205 467.878 3.08124 490.358 3.08124C512.838 3.08124 527.824 70.5205 527.824 70.5205C527.824 70.5205 542.811 137.96 565.291 137.96C587.77 137.96 602.757 70.5205 602.757 70.5205"
-                            stroke="black" stroke-width="5" stroke-miterlimit="10" />
-                    </svg>
+                <p class="left absolute light-sound-word">Light Wave</p>
+                <p class="right absolute light-sound-word">Sound Wave</p>
+            </div>
+            <div class="frame-shell column" style="padding-top: 100px;">
+                <div class="left absolute center">
+                    <div class="trigger"></div>
+                    <canvas id="sineCanvas" width="800" height="300"></canvas>
+                </div>
+                <div class="right absolute center">
+                    <div class="sound-trigger"></div>
+                    <canvas id="sound-wave" width="800" height="300"></canvas>
                 </div>
             </div>
         </section>
@@ -645,171 +674,8 @@
         </section>
     </div>
 
-
-    <script>
-        // Progress Bar 
-        const progressTag = document.querySelector(".progress_bar");
-        const bodyTag = document.querySelector("body");
-
-        // put it in a function and call on load
-        function updateProgressBar() {
-            const pixelsScrolled = window.scrollY;
-            const pageHeight = bodyTag.getBoundingClientRect().height;
-            const totalScrollableDistance = pageHeight - window.innerHeight;
-            const percentage = pixelsScrolled / totalScrollableDistance;
-            progressTag.style.width = `${percentage * 100}%`;
-        }
-
-        updateProgressBar();
-        document.addEventListener("scroll", updateProgressBar);
-
-        // SVG hover state Mobile
-        function updateHoverState() {
-            const glossaryItems = document.querySelectorAll(".mobile-grid-middle, .mobile-hover-state");
-            const viewportCenter = window.innerHeight / 2;
-
-            let closestItem = null;
-            let closestDistance = Infinity;
-
-            glossaryItems.forEach((item) => {
-                const itemRect = item.getBoundingClientRect();
-                const itemCenter = itemRect.top + itemRect.height / 2;
-                const distanceToCenter = Math.abs(viewportCenter - itemCenter);
-
-                if (distanceToCenter < closestDistance) {
-                    closestDistance = distanceToCenter;
-                    closestItem = item;
-                }
-
-                item.classList.remove("hover");
-            });
-
-            if (closestItem) {
-                closestItem.classList.add("hover");
-            }
-        }
-
-        function updateHoverStateText() {
-            const glossaryItems = document.querySelectorAll(".mobile-hover-state-text");
-            const viewportCenter = window.innerHeight / 2;
-
-            let closestItem = null;
-            let closestDistance = Infinity;
-
-            glossaryItems.forEach((item) => {
-                const itemRect = item.getBoundingClientRect();
-                const itemCenter = itemRect.top + itemRect.height / 2;
-                const distanceToCenter = Math.abs(viewportCenter - itemCenter);
-
-                if (distanceToCenter < closestDistance) {
-                    closestDistance = distanceToCenter;
-                    closestItem = item;
-                }
-
-                item.classList.remove("hover");
-            });
-
-            if (closestItem) {
-                closestItem.classList.add("hover");
-            }
-        }
-
-        document.addEventListener("scroll", () => {
-            updateHoverState();
-            updateHoverStateText();
-        });
-
-        window.addEventListener("resize", () => {
-            updateHoverState();
-            updateHoverStateText();
-        });
-
-        window.addEventListener("load", () => {
-            updateHoverState();
-            updateHoverStateText();
-        });
-
-        // Header Text
-        const sections = document.querySelectorAll("section");
-        const headers = {
-            top: document.getElementById("top-header"),
-            glossary: document.getElementById("glossary-header"),
-            bottom: document.getElementById("bottom-header"),
-        };
-
-        const headersMobile = {
-            top: document.getElementById("top-header-mobile"),
-            glossary: document.getElementById("glossary-header-mobile"),
-            bottom: document.getElementById("bottom-header-mobile"),
-        };
-
-        const offset = 100;
-
-        function updateHeaders() {
-            const pixelsScrolled = window.scrollY;
-            sections.forEach((section) => {
-                if (section.offsetTop <= pixelsScrolled + offset && section.offsetTop + section.offsetHeight > pixelsScrolled + offset) {
-                    Object.values(headers).forEach((header) => {
-                        header.style.color = "black";
-                    });
-                    headers[section.id].style.color = "#09f";
-
-                    Object.values(headersMobile).forEach((header) => {
-                        header.style.color = "black";
-                    });
-                    headersMobile[section.id].style.color = "#09f";
-                }
-            });
-        }
-
-        document.addEventListener("scroll", updateHeaders);
-
-        // Mobile scroll on click function
-        document.getElementById('top-header-mobile').addEventListener('click', function () {
-            const section = document.querySelector('.top-section-mobile');
-            section.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('glossary-header-mobile').addEventListener('click', function () {
-            const section = document.querySelector('.glossary-section-mobile');
-            section.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('bottom-header-mobile').addEventListener('click', function () {
-            const section = document.querySelector('.bottom-section-mobile');
-            section.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Desktop scroll on click function 
-        document.getElementById('top-header').addEventListener('click', function () {
-            const section = document.querySelector('.top-section');
-            section.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('glossary-header').addEventListener('click', function () {
-            const section = document.querySelector('.glossary-section');
-            section.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('bottom-header').addEventListener('click', function () {
-            const section = document.querySelector('.bottom-section');
-            section.scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // header hover 
-        const headerTextHovers = document.querySelectorAll('.header-text-hover');
-
-        headerTextHovers.forEach(headerText => {
-            headerText.addEventListener('click', (event) => {
-                event.stopPropagation();
-                headerText.classList.toggle('active');
-                setTimeout(() => {
-                    headerText.classList.remove('active');
-                }, 500);
-            });
-        });
-
-    </script>
+    <script src="three.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
