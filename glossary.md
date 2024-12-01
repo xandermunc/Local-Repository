@@ -48,3 +48,11 @@ Crest
 Trough
 Amplitude 
 Wavelength 
+
+Sound waves are mechanical waves that require a medium, such as air or water, to propagate. They involve the motion of matter through compressions and rarefactions, generating sound by transmitting energy. 
+
+Light waves are electromagnetic waves that do not require a medium to propagate. They consist of oscillating electric and magnetic fields, perpendicular to each other and the direction of propagation, creating light by transmitting energy across the electromagnetic spectrum.
+
+P is pressure 
+E electric field 
+B Magnetic field 

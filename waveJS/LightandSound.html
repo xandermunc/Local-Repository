@@ -71,13 +71,35 @@
             z-index: 20;
         }
 
-        .word-hover:hover~.wave-word {
+        .electro-word-hover {
+            display: none;
+            margin-top: 25px;
+            position: absolute;
+            opacity: 0.5;
+            height: 40px;
+            width: 400px;
+            z-index: 20;
+        }
+
+        .electro-word-hover.active {
+            display: block;
+        }
+
+        .wave-word.active {
             filter: blur(5px);
             color: #09f;
         }
 
-        .word-hover:hover~.wave-word-choice {
+        .wave-word {
+            transition: all 0.2s ease;
+        }
+
+        .wave-word-choice.active {
             opacity: 1;
+        }
+
+        .wave-word-choice:hover {
+            color: #09f;
         }
 
         .wave-word-choice {
@@ -86,31 +108,206 @@
             transition: all 0.2s ease;
         }
 
-        .left {
+        .electro {
             margin-left: -50%;
+            z-index: 0;
         }
 
-        .right {
+        .mechanical {
             margin-right: -50%;
+            z-index: 0;
+        }
+
+        .electro.active,
+        .mechanical.active {
+            opacity: 1;
+            z-index: 0;
+        }
+
+        .electro.blur,
+        .mechanical.blur {
+            filter: blur(5px);
+            color: #09f;
+            opacity: 1;
+            z-index: 0;
+        }
+
+        .sound-wave {
+            display: flex;
+        }
+
+        .light-wave {
+            display: none;
+        }
+
+        .info-shell {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            justify-content: center;
+            background-color: red;
+            width: 100vw;
+            height: 500px;
+            opacity: 0.5;
+        }
+
+        .info-box-shell {
+            display: flex;
+            width: 100vw;
+            justify-content: space-between;
+            background-color: #09f;
+        }
+
+        .info-box-left {
+            width: 20%;
+            height: 100px;
+            background-color: blue;
+            margin-left: 12%;
+        }
+
+        .info-box-right {
+            /* position: absolute; */
+            /* right: 0; */
+            width: 20%;
+            height: 100px;
+            background-color: blue;
+            margin-right: 12%;
+        }
+
+        p.definition {
+            font-size: 1em;
+            font-family: system-ui;
+        }
+
+        .sound-info {
+            display: block;
+            opacity: 1;
+            transition: all 0.2s ease;
+        }
+
+        .light-info {
+            display: none;
+            opacity: 1;
+            transition: all 0.2s ease;
         }
     </style>
 </head>
 
 <body>
     <div class="word-choice centered">
+        <div class="info-shell">
+            <div class="sound-info">
+                <div class="info-box-shell" style="margin-bottom: 100px;">
+                    <div class="info-box-left definition centered">
+                        <p class="light-sound-word">P</p>
+                    </div>
+                    <div class="info-box-right">
+                        <p class="definition wave-definition">Sound waves are mechanical waves that require a medium,
+                            such as air or
+                            water, to propagate. They involve the motion of matter through compressions and
+                            rarefactions, generating sound by transmitting energy. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="word-hover"></div>
         <p class="light-sound-word wave-word">Wave</p>
-        <p class="light-sound-word wave-word-choice left">Electromagnetic Light Wave</p>
-        <p class="light-sound-word wave-word-choice right">Mechanical Sound Wave</p>
+        <div class="electro-word-hover"></div>
+        <p class="light-sound-word wave-word-choice electro">Electromagnetic Light Wave</p>
+        <p class="light-sound-word wave-word-choice mechanical">Mechanical Sound Wave</p>
     </div>
-    <div class="centered">
+    <div class="centered light-wave">
         <div class="trigger"></div>
         <canvas id="sineCanvas" width="800" height="300"></canvas>
     </div>
-    <!-- <div class="sound-trigger"></div> -->
-    <!-- <canvas id="sound-wave" width="800" height="300"></canvas> -->
+    <div class="centered sound-wave">
+        <div class="sound-trigger"></div>
+        <canvas id="sound-wave" width="800" height="300"></canvas>
+    </div>
 
     <script>
+        let isHoverActive = false;
+        let isElectroActive = false;
+        let isMechanicalActive = false;
+
+        const wordHover = document.querySelector(".word-hover");
+        const wordChoice = document.querySelector(".word-choice");
+        const waveWord = document.querySelector(".wave-word");
+        const electro = document.querySelector(".electro");
+        const mechanical = document.querySelector(".mechanical");
+        const electroWordHover = document.querySelector(".electro-word-hover");
+        const mechanicalWordHover = document.querySelector(".mechanical-word-hover");
+        const soundWave = document.querySelector(".sound-wave");
+        const lightWave = document.querySelector(".light-wave");
+        const soundInfo = document.querySelector(".sound-info");
+        const lightInfo = document.querySelector(".light-info");
+        const lightSoundWord = document.querySelector('.light-sound-word');
+        const waveDefinition = document.querySelector('.wave-definition');
+
+        wordHover.addEventListener("mouseenter", () => {
+            isHoverActive = true;
+            waveWord.classList.add("active");
+            electro.classList.add("active");
+            mechanical.classList.add("active");
+        });
+
+        electroWordHover.addEventListener("mouseenter", () => {
+            if (isElectroActive) {
+                electro.classList.add("blur");
+                mechanical.classList.add("active");
+            } else if (isMechanicalActive) {
+                mechanical.classList.add("blur");
+                electro.classList.add("active");
+            }
+        });
+
+        wordChoice.addEventListener("mouseleave", () => {
+            if (!isElectroActive && !isMechanicalActive) {
+                isHoverActive = false;
+                waveWord.classList.remove("active");
+                electro.classList.remove("active", "blur");
+                mechanical.classList.remove("active");
+            } else if (isElectroActive) {
+                electro.classList.add("active");
+                electro.classList.remove("blur");
+                mechanical.classList.remove("active");
+            } else if (isMechanicalActive) {
+                mechanical.classList.add("active");
+                mechanical.classList.remove("blur");
+                electro.classList.remove("active");
+            }
+        });
+
+        electro.addEventListener("click", () => {
+            electro.style.marginLeft = '0';
+            mechanical.classList.remove("active");
+            mechanical.classList.remove("blur");
+            mechanical.style.marginRight = '-50%';
+            waveWord.style.opacity = '0';
+            electroWordHover.classList.add("active");
+            isElectroActive = true;
+            isMechanicalActive = false;
+            lightWave.style.display = 'flex';
+            soundWave.style.display = 'none';
+            lightSoundWord.textContent = 'E';
+            waveDefinition.textContent = 'Light waves are electromagnetic waves that do not require a medium to propagate. They consist of oscillating electric and magnetic fields, perpendicular to each other and the direction of propagation, creating light by transmitting energy across the electromagnetic spectrum.';
+        });
+
+        mechanical.addEventListener("click", () => {
+            mechanical.style.marginRight = '0';
+            electro.classList.remove("active");
+            electro.classList.remove("blur");
+            electro.style.marginLeft = '-50%';
+            waveWord.style.opacity = '0';
+            electroWordHover.classList.add("active");
+            isElectroActive = false;
+            isMechanicalActive = true;
+            soundWave.style.display = 'flex';
+            lightWave.style.display = 'none';
+            lightSoundWord.textContent = 'P';
+            waveDefinition.textContent = 'Sound waves are mechanical waves that require a medium, such as air or water, to propagate. They involve the motion of matter through compressions and rarefactions, generating sound by transmitting energy.';
+        });
+
         const canvas = document.getElementById("sineCanvas");
         const trigger = document.querySelector(".trigger");
         const ctx = canvas.getContext("2d");
@@ -158,8 +355,8 @@
                 ctx.lineTo(projectedX, projectedY);
             }
 
-            ctx.strokeStyle = "red";
-            ctx.lineWidth = 2;
+            ctx.strokeStyle = "#09f";
+            ctx.lineWidth = 4;
             ctx.stroke();
             ctx.restore();
         }
@@ -188,8 +385,8 @@
                 ctx.lineTo(projectedX, projectedY);
             }
 
-            ctx.strokeStyle = "blue";
-            ctx.lineWidth = 2;
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 4;
             ctx.stroke();
             ctx.restore();
         }
@@ -273,8 +470,8 @@
                 ctx2.lineTo(projectedX2, projectedY2);
             }
 
-            ctx2.strokeStyle = "blue";
-            ctx2.lineWidth = 2;
+            ctx2.strokeStyle = "black";
+            ctx2.lineWidth = 4;
             ctx2.stroke();
             ctx2.restore();
         }
