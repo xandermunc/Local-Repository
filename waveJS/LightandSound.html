@@ -18,6 +18,7 @@
         }
 
         .trigger {
+            position: absolute;
             width: 400px;
             height: 300px;
             background-color: blue;
@@ -25,6 +26,7 @@
         }
 
         .sound-trigger {
+            position: absolute;
             width: 400px;
             height: 300px;
             background-color: red;
@@ -42,15 +44,71 @@
             font-family: Arial, sans-serif;
             font-size: 16px;
         }
+
+        p.light-sound-word {
+            font-size: 1.8em;
+            transition: all 0.2s ease;
+            font-family: system-ui;
+        }
+
+        .centered {
+            display: flex;
+            justify-content: center;
+        }
+
+        .word-choice {
+            /* background-color: red; */
+            width: 100vw;
+        }
+
+        .word-hover {
+            margin-top: 25px;
+            position: absolute;
+            /* background-color: red; */
+            opacity: 0.5;
+            height: 40px;
+            width: 80px;
+            z-index: 20;
+        }
+
+        .word-hover:hover~.wave-word {
+            filter: blur(5px);
+            color: #09f;
+        }
+
+        .word-hover:hover~.wave-word-choice {
+            opacity: 1;
+        }
+
+        .wave-word-choice {
+            position: absolute;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .left {
+            margin-left: -50%;
+        }
+
+        .right {
+            margin-right: -50%;
+        }
     </style>
 </head>
 
 <body>
-    <div class="trigger"></div>
-    <div class="sound-trigger"></div>
-    <canvas id="sineCanvas" width="800" height="300"></canvas>
-    <canvas id="sound-wave" width="800" height="300"></canvas>
-    <div id="info"></div>
+    <div class="word-choice centered">
+        <div class="word-hover"></div>
+        <p class="light-sound-word wave-word">Wave</p>
+        <p class="light-sound-word wave-word-choice left">Electromagnetic Light Wave</p>
+        <p class="light-sound-word wave-word-choice right">Mechanical Sound Wave</p>
+    </div>
+    <div class="centered">
+        <div class="trigger"></div>
+        <canvas id="sineCanvas" width="800" height="300"></canvas>
+    </div>
+    <!-- <div class="sound-trigger"></div> -->
+    <!-- <canvas id="sound-wave" width="800" height="300"></canvas> -->
 
     <script>
         const canvas = document.getElementById("sineCanvas");
@@ -228,7 +286,7 @@
             rotationY2 += (targetRotationY2 - rotationY2) * 0.1;
 
             drawSineWave2();
-            requestAnimationFrame(animate2); 
+            requestAnimationFrame(animate2);
         }
 
         trigger2.addEventListener("mouseenter", () => {

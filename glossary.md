@@ -43,3 +43,8 @@ https://www.youtube.com/watch?v=IRBfpBPELmE
 https://www.youtube.com/watch?v=IXxZRZxafEQ
 
 testing
+
+Crest 
+Trough
+Amplitude 
+Wavelength 

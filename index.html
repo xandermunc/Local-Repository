@@ -125,17 +125,19 @@
             transition: all 0.2s ease;
         }
 
+        .header-shell-shell {
+            display: flex;
+            justify-content: flex-end;
+        }
+
         .header-shell {
             padding-top: 80px;
             padding-right: 6%;
-            width: 100vw;
-            /* height: 100vh; */
             position: fixed;
             transition: color .3s;
             display: flex;
             justify-content: flex-end;
             z-index: 100;
-            /* background-color: red; */
         }
 
         .header-text {
@@ -356,11 +358,13 @@
 
         .sound-trigger,
         .trigger,
-        .third-trigger {
+        .third-trigger,
+        .vfw-trigger {
             position: absolute;
             width: 400px;
             height: 300px;
-            /* background-color: #09f; */
+            background-color: #09f;
+            opacity: 0.5;
         }
 
         .column {
@@ -375,6 +379,40 @@
             justify-content: center;
             align-items: center;
         }
+
+        .vfw-shell {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            justify-content: center;
+            background-color: red;
+            width: 100vw;
+            height: 500px;
+            opacity: 0.5;
+        }
+
+        .vfw-box-shell {
+            display: flex;
+            width: 100vw;
+            justify-content: space-between;
+            background-color: #09f;
+        }
+
+        .vfw-box-left {
+            width: 20%;
+            height: 100px;
+            background-color: blue;
+            margin-left: 12%;
+        }
+
+        .vfw-box-right {
+            /* position: absolute; */
+            /* right: 0; */
+            width: 20%;
+            height: 100px;
+            background-color: blue;
+            margin-right: 12%;
+        }
     </style>
 </head>
 
@@ -382,16 +420,18 @@
     <!-- Desktop -->
     <div class="desktop-view">
         <div class="progress_bar progress_bar--white"></div>
-        <header class="header-shell">
-            <div class="header-text">
-                <div class="header-text-hover-shell">
-                    <p class="header-text-hover" id="top-header">Top</p>
-                </div>
-                <div class="header-text-hover-shell">
-                    <p class="header-text-hover" id="glossary-header">Glossary</p>
-                </div>
-                <div class="header-text-hover-shell">
-                    <p class="header-text-hover" id="bottom-header">Bottom</p>
+        <header class="header-shell-shell">
+            <div class="header-shell">
+                <div class="header-text">
+                    <div class="header-text-hover-shell">
+                        <p class="header-text-hover" id="top-header">Equation</p>
+                    </div>
+                    <div class="header-text-hover-shell">
+                        <p class="header-text-hover" id="glossary-header">Anatomy</p>
+                    </div>
+                    <div class="header-text-hover-shell">
+                        <p class="header-text-hover" id="bottom-header">Bottom</p>
+                    </div>
                 </div>
             </div>
         </header>
@@ -401,7 +441,7 @@
         </section>
 
         <section class="glossary-section" id="glossary">
-            <h1>Glossary</h1>
+            <h1>Equation</h1>
             <div class="frame-shell">
                 <p class="left absolute light-sound-word">Light</p>
                 <p class="right absolute light-sound-word">Sound</p>
@@ -498,10 +538,35 @@
             </div>
 
             <div class="frame-shell">
+                <div class="vfw-trigger" style="z-index: 10;"></div>
+                <div class="vfw-shell">
+                    <div>
+                        <div class="vfw-box-shell" style="margin-bottom: 100px;">
+                            <div class="vfw-box-left definition">
+                                <p class="light-sound-word">Crest</p>
+                            </div>
+                            <div class="vfw-box-right definition">
+                                <p class="light-sound-word">Trough</p>
+                            </div>
+                        </div>
+                        <div class="vfw-box-shell">
+                            <div class="vfw-box-left definition">
+                                <p class="light-sound-word">Amplitude</p>
+                            </div>
+                            <div class="vfw-box-right definition">
+                                <p class="light-sound-word">Wavelength</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <canvas id="vfw-wave" width="800" height="300"></canvas>
+            </div>
+
+            <!-- <div class="frame-shell">
                 <p class="left absolute light-sound-word">Light Wave</p>
                 <p class="right absolute light-sound-word">Sound Wave</p>
-            </div>
-            <div class="frame-shell column" style="padding-top: 100px;">
+            </div> -->
+            <!-- <div class="frame-shell column" style="padding-top: 100px;">
                 <div class="left absolute center">
                     <div class="trigger"></div>
                     <canvas id="sineCanvas" width="800" height="300"></canvas>
@@ -510,7 +575,7 @@
                     <div class="sound-trigger"></div>
                     <canvas id="sound-wave" width="800" height="300"></canvas>
                 </div>
-            </div>
+            </div> -->
         </section>
 
         <section class="bottom-section" id="bottom">
@@ -674,7 +739,8 @@
         </section>
     </div>
 
-    <script src="three.js"></script>
+    <script src="vfw.js"></script>
+    <script src="light_and_sound.js"></script>
     <script src="main.js"></script>
 </body>
 
