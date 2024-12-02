@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combined Sine Waves</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             display: flex;
             flex-direction: column;
@@ -21,7 +27,6 @@
             position: absolute;
             width: 400px;
             height: 300px;
-            background-color: blue;
             opacity: 0.5;
         }
 
@@ -29,14 +34,12 @@
             position: absolute;
             width: 400px;
             height: 300px;
-            background-color: red;
             opacity: 0.5;
         }
 
         canvas {
             width: 800px;
             height: 300px;
-            border: 1px solid black;
         }
 
         #info {
@@ -57,15 +60,12 @@
         }
 
         .word-choice {
-            /* background-color: red; */
+            padding: 20px;
             width: 100vw;
         }
 
         .word-hover {
-            margin-top: 25px;
             position: absolute;
-            /* background-color: red; */
-            opacity: 0.5;
             height: 40px;
             width: 80px;
             z-index: 20;
@@ -73,7 +73,6 @@
 
         .electro-word-hover {
             display: none;
-            margin-top: 25px;
             position: absolute;
             opacity: 0.5;
             height: 40px;
@@ -143,35 +142,39 @@
         .info-shell {
             display: flex;
             flex-direction: column;
+            top: 215px; 
             position: absolute;
             justify-content: center;
-            background-color: red;
             width: 100vw;
             height: 500px;
-            opacity: 0.5;
+            z-index: -10;
         }
 
         .info-box-shell {
             display: flex;
             width: 100vw;
             justify-content: space-between;
-            background-color: #09f;
         }
 
         .info-box-left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 20%;
             height: 100px;
-            background-color: blue;
             margin-left: 12%;
         }
 
         .info-box-right {
-            /* position: absolute; */
-            /* right: 0; */
             width: 20%;
             height: 100px;
-            background-color: blue;
             margin-right: 12%;
+        }
+
+        .info-box-right.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         p.definition {
@@ -190,6 +193,18 @@
             opacity: 1;
             transition: all 0.2s ease;
         }
+
+        .text-box-right,
+        .text-box-left {
+            font-size: 1em;
+            font-family: system-ui;
+        }
+
+        .text-box-right.active,
+        .text-box-left.active {
+            font-size: 1.8em;
+            font-family: system-ui;
+        }
     </style>
 </head>
 
@@ -197,15 +212,12 @@
     <div class="word-choice centered">
         <div class="info-shell">
             <div class="sound-info">
-                <div class="info-box-shell" style="margin-bottom: 100px;">
+                <div class="info-box-shell" style="margin-bottom: 60px;">
                     <div class="info-box-left definition centered">
-                        <p class="light-sound-word">P</p>
+                        <p class="text-box-left"></p>
                     </div>
                     <div class="info-box-right">
-                        <p class="definition wave-definition">Sound waves are mechanical waves that require a medium,
-                            such as air or
-                            water, to propagate. They involve the motion of matter through compressions and
-                            rarefactions, generating sound by transmitting energy. </p>
+                        <p class="text-box-right"></p>
                     </div>
                 </div>
             </div>
@@ -241,8 +253,10 @@
         const lightWave = document.querySelector(".light-wave");
         const soundInfo = document.querySelector(".sound-info");
         const lightInfo = document.querySelector(".light-info");
-        const lightSoundWord = document.querySelector('.light-sound-word');
-        const waveDefinition = document.querySelector('.wave-definition');
+        const textBoxLeft = document.querySelector('.text-box-left');
+        const textBoxRight = document.querySelector('.text-box-right');
+        const infoBoxRight = document.querySelector('.info-box-right');
+        const infoBoxLeft = document.querySelector('.info-box-left');
 
         wordHover.addEventListener("mouseenter", () => {
             isHoverActive = true;
@@ -254,6 +268,7 @@
         electroWordHover.addEventListener("mouseenter", () => {
             if (isElectroActive) {
                 electro.classList.add("blur");
+                console.log("test");
                 mechanical.classList.add("active");
             } else if (isMechanicalActive) {
                 mechanical.classList.add("blur");
@@ -289,8 +304,12 @@
             isMechanicalActive = false;
             lightWave.style.display = 'flex';
             soundWave.style.display = 'none';
-            lightSoundWord.textContent = 'E';
-            waveDefinition.textContent = 'Light waves are electromagnetic waves that do not require a medium to propagate. They consist of oscillating electric and magnetic fields, perpendicular to each other and the direction of propagation, creating light by transmitting energy across the electromagnetic spectrum.';
+            textBoxRight.textContent = 'E';
+            textBoxRight.classList.add("active");
+            textBoxLeft.classList.remove("active");
+            infoBoxRight.classList.add("active");
+            infoBoxLeft.classList.remove("active");
+            textBoxLeft.textContent = 'Light waves are electromagnetic waves that do not require a medium to propagate. They consist of oscillating electric and magnetic fields, perpendicular to each other and the direction of propagation, creating light by transmitting energy across the electromagnetic spectrum.';
         });
 
         mechanical.addEventListener("click", () => {
@@ -304,8 +323,12 @@
             isMechanicalActive = true;
             soundWave.style.display = 'flex';
             lightWave.style.display = 'none';
-            lightSoundWord.textContent = 'P';
-            waveDefinition.textContent = 'Sound waves are mechanical waves that require a medium, such as air or water, to propagate. They involve the motion of matter through compressions and rarefactions, generating sound by transmitting energy.';
+            textBoxLeft.textContent = 'P';
+            textBoxRight.classList.remove("active");
+            textBoxLeft.classList.add("active");
+            infoBoxRight.classList.remove("active");
+            infoBoxLeft.classList.add("active");
+            textBoxRight.textContent = 'Sound waves are mechanical waves that require a medium, such as air or water, to propagate. They involve the motion of matter through compressions and rarefactions, generating sound by transmitting energy.';
         });
 
         const canvas = document.getElementById("sineCanvas");

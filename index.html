@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glossary</title>
+    <title>Glossary of a Wave</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
         * {
             margin: 0;
@@ -121,9 +122,9 @@
             font-size: 1em;
         }
 
-        p {
+        /* p {
             transition: all 0.2s ease;
-        }
+        } */
 
         .header-shell-shell {
             display: flex;
@@ -174,19 +175,19 @@
             display: none;
         }
 
-        @media (min-width: 501px) {
+        @media (min-width: 651px) {
             .desktop-view {
                 display: block;
             }
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 650px) {
             .mobile-view {
                 display: block;
             }
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 650px) {
             .frame-shell {
                 width: 100vw;
                 margin-top: 100px;
@@ -363,7 +364,7 @@
             position: absolute;
             width: 400px;
             height: 300px;
-            background-color: #09f;
+            /* background-color: #09f; */
             opacity: 0.5;
         }
 
@@ -413,6 +414,240 @@
             background-color: blue;
             margin-right: 12%;
         }
+
+        /*LIGHTSOUND*/
+        .trigger {
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            opacity: 0.5;
+        }
+
+        .sound-trigger {
+            position: absolute;
+            width: 400px;
+            height: 300px;
+            opacity: 0.5;
+        }
+
+        canvas {
+            width: 800px;
+            height: 300px;
+        }
+
+        #info {
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        p.light-sound-word {
+            font-size: 1.8em;
+            transition: all 0.2s ease;
+            font-family: system-ui;
+        }
+
+        .centered {
+            display: flex;
+            justify-content: center;
+        }
+
+        .word-choice {
+            padding: 20px;
+            width: 100vw;
+        }
+
+        .word-hover {
+            position: absolute;
+            height: 40px;
+            width: 80px;
+            z-index: 20;
+        }
+
+        .electro-word-hover {
+            display: none;
+            position: absolute;
+            opacity: 0.5;
+            height: 40px;
+            width: 400px;
+            z-index: 20;
+        }
+
+        .electro-word-hover.active {
+            display: block;
+        }
+
+        .wave-word.active {
+            filter: blur(5px);
+            color: #09f;
+        }
+
+        .wave-word {
+            transition: all 0.2s ease;
+        }
+
+        .wave-word-choice.active {
+            opacity: 1;
+        }
+
+        .wave-word-choice:hover {
+            color: #09f;
+        }
+
+        .wave-word-choice {
+            position: absolute;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .electro {
+            margin-left: -50%;
+            z-index: 0;
+        }
+
+        .mechanical {
+            margin-right: -50%;
+            z-index: 0;
+        }
+
+        .electro.active,
+        .mechanical.active {
+            opacity: 1;
+            z-index: 0;
+        }
+
+        .electro.blur,
+        .mechanical.blur {
+            filter: blur(5px);
+            color: #09f;
+            opacity: 1;
+            z-index: 0;
+        }
+
+        .sound-wave {
+            display: flex;
+        }
+
+        .light-wave {
+            display: none;
+        }
+
+        .info-shell {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            justify-content: center;
+            width: 100vw;
+            height: 500px;
+            z-index: -10;
+        }
+
+        .info-box-shell {
+            display: flex;
+            width: 100vw;
+            justify-content: space-between;
+        }
+
+        .info-box-left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 20%;
+            height: 100px;
+            margin-left: 12%;
+            transition: none;
+        }
+
+        .info-box-right {
+            width: 20%;
+            height: 100px;
+            margin-right: 12%;
+            transition: none;
+        }
+
+        .info-box-right.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p.definition {
+            font-size: 1em;
+            font-family: system-ui;
+        }
+
+        .sound-info {
+            display: block;
+            opacity: 1;
+        }
+
+        .light-info {
+            display: none;
+            opacity: 1;
+        }
+
+        .text-box-right,
+        .text-box-left {
+            font-size: 1em;
+            font-family: system-ui;
+        }
+
+        .text-box-right.active,
+        .text-box-left.active {
+            font-size: 1.8em;
+            font-family: system-ui;
+        }
+
+        .text-box-left.blur,
+        .text-box-right.blur {
+            filter: blur(5px);
+            color: #09f;
+        }
+
+        .text-box-left-trigger {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+
+        .title-shell {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            /* font-size: 6em; */
+            font-size: 6.6vw;
+            margin: 0;
+            transition: filter 0.2s ease, color 0.2s ease;
+        }
+
+        .title-trigger {
+            width: 260px;
+            height: 100px;
+            position: absolute;
+            right: 0;
+            margin-right: 310px;
+            z-index: 10;
+        }
+
+        .title-trigger:hover~.title {
+            filter: blur(5px);
+            color: #09f;
+        }
+
+        #title-wave {
+            position: absolute;
+            right: 0;
+            margin-right: 35px;
+            margin-top: 255px;
+            z-index: 10;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
     </style>
 </head>
 
@@ -424,20 +659,27 @@
             <div class="header-shell">
                 <div class="header-text">
                     <div class="header-text-hover-shell">
-                        <p class="header-text-hover" id="top-header">Equation</p>
+                        <p class="header-text-hover" id="top-header">Anatomy</p>
                     </div>
                     <div class="header-text-hover-shell">
-                        <p class="header-text-hover" id="glossary-header">Anatomy</p>
+                        <p class="header-text-hover" id="glossary-header">Equation</p>
                     </div>
                     <div class="header-text-hover-shell">
-                        <p class="header-text-hover" id="bottom-header">Bottom</p>
+                        <p class="header-text-hover" id="bottom-header">Contrast</p>
                     </div>
                 </div>
             </div>
         </header>
 
         <section class="top-section" id="top">
-            <div class="scroll-space" style="height: 100vh;"></div>
+            <canvas id="title-wave" width="800" height="300"></canvas>
+            <!-- <div class="scroll-space" style="height: 40vh;"></div> -->
+            <div class="title-shell">
+                <h1 class="title">Glossary of a</h1>
+                <div class="title-trigger"></div>
+                <h1 class="title" style="margin-left: 15px;">Wave</h1>
+            </div>
+            <!-- <div class="scroll-space" style="height: 50vh;"></div> -->
         </section>
 
         <section class="glossary-section" id="glossary">
@@ -537,7 +779,7 @@
                 </div>
             </div>
 
-            <div class="frame-shell">
+            <!-- <div class="frame-shell">
                 <div class="vfw-trigger" style="z-index: 10;"></div>
                 <div class="vfw-shell">
                     <div>
@@ -560,13 +802,13 @@
                     </div>
                 </div>
                 <canvas id="vfw-wave" width="800" height="300"></canvas>
-            </div>
+            </div> -->
 
             <!-- <div class="frame-shell">
                 <p class="left absolute light-sound-word">Light Wave</p>
                 <p class="right absolute light-sound-word">Sound Wave</p>
-            </div> -->
-            <!-- <div class="frame-shell column" style="padding-top: 100px;">
+            </div>
+            <div class="frame-shell column" style="padding-top: 100px;">
                 <div class="left absolute center">
                     <div class="trigger"></div>
                     <canvas id="sineCanvas" width="800" height="300"></canvas>
@@ -576,6 +818,39 @@
                     <canvas id="sound-wave" width="800" height="300"></canvas>
                 </div>
             </div> -->
+        </section>
+
+        <section class="contrast-section" id="contrast">
+            <div class="frame-shell" style="margin-top: 150px;">
+                <div class="word-choice centered">
+                    <div class="info-shell">
+                        <div class="sound-info">
+                            <div class="info-box-shell" style="margin-bottom: 60px;">
+                                <div class="info-box-left definition centered">
+                                    <div class="text-box-left-trigger"></div>
+                                    <p class="text-box-left"></p>
+                                </div>
+                                <div class="info-box-right">
+                                    <p class="text-box-right"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="word-hover"></div>
+                    <p class="light-sound-word wave-word">Wave</p>
+                    <div class="electro-word-hover"></div>
+                    <p class="light-sound-word wave-word-choice electro">Electromagnetic Light Wave</p>
+                    <p class="light-sound-word wave-word-choice mechanical">Mechanical Sound Wave</p>
+                </div>
+                <div class="centered light-wave">
+                    <div class="trigger"></div>
+                    <canvas id="sineCanvas" width="800" height="300"></canvas>
+                </div>
+                <div class="centered sound-wave">
+                    <div class="sound-trigger"></div>
+                    <canvas id="sound-wave" width="800" height="300"></canvas>
+                </div>
+            </div>
         </section>
 
         <section class="bottom-section" id="bottom">
@@ -588,13 +863,13 @@
         <header class="header-shell-mobile">
             <div class="header-text-mobile">
                 <div class="header-text-shell-mobile">
-                    <p id="top-header-mobile">Top</p>
+                    <p id="top-header-mobile">Anatomy</p>
                 </div>
                 <div class="header-text-shell-mobile">
-                    <p id="glossary-header-mobile">Glossary</p>
+                    <p id="glossary-header-mobile">Equation</p>
                 </div>
                 <div class="header-text-shell-mobile">
-                    <p id="bottom-header-mobile">Bottom</p>
+                    <p id="bottom-header-mobile">Contrast</p>
                 </div>
             </div>
             <div class="header-blur-mobile"></div>
@@ -723,14 +998,7 @@
                 </div>
             </div>
             <div class="frame-shell">
-                <div class="svg-mask-mobile">
-                    <svg class="animated-svg" xmlns="http://www.w3.org/2000/svg" width="606" height="141"
-                        viewBox="0 0 606 141" fill="none">
-                        <path
-                            d="M3.29651 70.5205C3.29651 70.5205 18.283 3.08124 40.7628 3.08124C63.2425 3.08124 78.229 70.5205 78.229 70.5205C78.229 70.5205 93.2156 137.96 115.695 137.96C138.175 137.96 153.162 70.5205 153.162 70.5205C153.162 70.5205 168.148 3.08124 190.628 3.08124C213.108 3.08124 228.094 70.5205 228.094 70.5205C228.094 70.5205 243.081 137.96 265.56 137.96C288.04 137.96 303.027 70.5205 303.027 70.5205C303.027 70.5205 318.013 3.08124 340.493 3.08124C362.973 3.08124 377.959 70.5205 377.959 70.5205C377.959 70.5205 392.946 137.96 415.425 137.96C437.905 137.96 452.892 70.5205 452.892 70.5205C452.892 70.5205 467.878 3.08124 490.358 3.08124C512.838 3.08124 527.824 70.5205 527.824 70.5205C527.824 70.5205 542.811 137.96 565.291 137.96C587.77 137.96 602.757 70.5205 602.757 70.5205"
-                            stroke="black" stroke-width="5" stroke-miterlimit="10" />
-                    </svg>
-                </div>
+                <canvas id="mobile-wave" width="800" height="300"></canvas>
             </div>
         </section>
 
@@ -738,9 +1006,11 @@
             <div class="scroll-space"></div>
         </section>
     </div>
-
-    <script src="vfw.js"></script>
-    <script src="light_and_sound.js"></script>
+    <!-- <script src="vfw.js"></script> -->
+    <!-- <script src="light_and_sound.js"></script> -->
+    <script src="mobileWave.js"></script>
+    <script src="titleWave.js"></script>
+    <script src="lightSound.js"></script>
     <script src="main.js"></script>
 </body>
 
