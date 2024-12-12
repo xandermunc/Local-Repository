@@ -138,7 +138,9 @@ function drawSineWave2D() {
         ctx.lineTo(projectedX, projectedY);
     }
 
-    ctx.strokeStyle = "#09f";
+    const computedStyle = getComputedStyle(document.documentElement);
+    const newColor = computedStyle.getPropertyValue('--background-color').trim(); 
+    ctx.strokeStyle = newColor; 
     ctx.lineWidth = 4;
     ctx.stroke();
     ctx.restore();

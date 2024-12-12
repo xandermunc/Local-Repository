@@ -81,39 +81,38 @@ window.addEventListener("load", () => {
 });
 
 // Header Text
-const sections = document.querySelectorAll("section");
-const headers = {
-    top: document.getElementById("top-header"),
-    glossary: document.getElementById("glossary-header"),
-    bottom: document.getElementById("bottom-header"),
-};
+// function changeHeaderColor(headerId, isVisible) {
+//     const header = document.getElementById(headerId);
+//     header.style.color = isVisible ? '#09f' : '';
+// }
 
-const headersMobile = {
-    top: document.getElementById("top-header-mobile"),
-    glossary: document.getElementById("glossary-header-mobile"),
-    bottom: document.getElementById("bottom-header-mobile"),
-};
+// const observer = new IntersectionObserver((entries) => {
+//     let visibleHeaderId = null;
 
-const offset = 100;
+//     entries.forEach(entry => {
+//         if (entry.isIntersecting) {
+//             switch (entry.target.className) {
+//                 case 'glossary-section':
+//                     visibleHeaderId = 'top-header';
+//                     break;
+//                 case 'wavelength-section':
+//                     visibleHeaderId = 'glossary-header';
+//                     break;
+//                 case 'bottom-section':
+//                     visibleHeaderId = 'bottom-header';
+//                     break;
+//             }
+//         }
+//     });
 
-function updateHeaders() {
-    const pixelsScrolled = window.scrollY;
-    sections.forEach((section) => {
-        if (section.offsetTop <= pixelsScrolled + offset && section.offsetTop + section.offsetHeight > pixelsScrolled + offset) {
-            Object.values(headers).forEach((header) => {
-                header.style.color = "black";
-            });
-            headers[section.id].style.color = "#09f";
+//     changeHeaderColor('top-header', visibleHeaderId === 'top-header');
+//     changeHeaderColor('glossary-header', visibleHeaderId === 'glossary-header');
+//     changeHeaderColor('bottom-header', visibleHeaderId === 'bottom-header');
+// }, { threshold: 0.5 });
 
-            Object.values(headersMobile).forEach((header) => {
-                header.style.color = "black";
-            });
-            headersMobile[section.id].style.color = "#09f";
-        }
-    });
-}
-
-document.addEventListener("scroll", updateHeaders);
+// document.querySelectorAll('.glossary-section, .wavelength-section, .bottom-section').forEach(section => {
+//     observer.observe(section);
+// });
 
 // Mobile scroll on click function
 document.getElementById('top-header-mobile').addEventListener('click', function () {
@@ -133,17 +132,17 @@ document.getElementById('bottom-header-mobile').addEventListener('click', functi
 
 // Desktop scroll on click function 
 document.getElementById('top-header').addEventListener('click', function () {
-    const section = document.querySelector('.top-section');
-    section.scrollIntoView({ behavior: 'smooth' });
-});
-
-document.getElementById('glossary-header').addEventListener('click', function () {
     const section = document.querySelector('.glossary-section');
     section.scrollIntoView({ behavior: 'smooth' });
 });
 
+document.getElementById('glossary-header').addEventListener('click', function () {
+    const section = document.querySelector('.wavelength-section');
+    section.scrollIntoView({ behavior: 'smooth' });
+});
+
 document.getElementById('bottom-header').addEventListener('click', function () {
-    const section = document.querySelector('.bottom-section');
+    const section = document.querySelector('.contrast-section');
     section.scrollIntoView({ behavior: 'smooth' });
 });
 
@@ -159,3 +158,16 @@ headerTextHovers.forEach(headerText => {
         }, 500);
     });
 });
+
+// hover sound 
+// const hoverElements = document.querySelectorAll('.hover-effect');
+// const hoverSound = document.getElementById('hoverSound');
+
+// hoverElements.forEach(element => {
+//     element.addEventListener('mouseenter', () => {
+//         hoverSound.currentTime = 0;
+//         hoverSound.play().catch(error => {
+//             console.error("Audio play failed:", error);
+//         });
+//     });
+// });

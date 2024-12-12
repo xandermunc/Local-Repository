@@ -56,3 +56,13 @@ Light waves are electromagnetic waves that do not require a medium to propagate.
 P is pressure 
 E electric field 
 B Magnetic field 
+
+the dots represent particles in a medium (like air molecules) that oscillate back and forth as the sound wave passes through.
+
+Sound travels through a medium (such as air, water, or solids) as a mechanical wave. It is a type of energy that causes particles in the medium to vibrate. These vibrations occur in a series of compressions (where particles are pushed closer together) and rarefactions (where particles are spread farther apart).
+
+As a sound wave passes, the particles in the medium oscillate back and forth around their equilibrium positions. Importantly, the particles themselves do not travel with the wave; instead, the energy of the wave propagates through the medium. This movement relies on the interaction between particles, where one particle's motion influences its neighbor, creating a chain reaction of oscillations.
+
+The speed of sound depends on the medium's properties. In solids, where particles are tightly bound, sound travels fastest. In gases, where particles are more spread out, sound moves slower. Sound waves are a fascinating example of how energy can move through matter without requiring the matter itself to change position significantly.
+
+Glossary of a Wave is an interactive resource for understanding the similarities and differences between light wave and sound waves. This website offers clear explanations and comparisons of the fundamental concepts, properties, and behaviors of these two types of waves. 

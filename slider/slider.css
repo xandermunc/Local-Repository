@@ -1,0 +1,9 @@
+#svg-slider {
+    display: block;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+}
+
+.circle {
+    cursor: pointer;
+}

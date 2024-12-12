@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+canvas {
+    width: 800px;
+    height: 300px;
+}
+
+#svg-slider {
+    display: block;
+    margin: 20px auto;
+}
+
+.circle {
+    cursor: pointer;
+}
+
+#color-rect {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    filter: blur(5000px);
+    will-change: transform;
+    z-index: -1;
+}
+
+#wavelength-display {
+    width: 430px;
+    font-size: 3em;
+    font-family: system-ui;
+    color: #fff;
+}
+
+.wavelength-display-text {
+    position: absolute;
+    font-size: 3em;
+    font-family: system-ui;
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -21,7 +21,7 @@ function drawSineWaveTitle() {
     ctxTitle.translate(widthTitle / 2, heightTitle / 2);
 
     ctxTitle.beginPath();
-    for (let xTitle = -widthTitle / 8; xTitle < widthTitle / 8; xTitle++) {
+    for (let xTitle = -widthTitle / 2; xTitle < widthTitle / 2; xTitle++) {
         const yTitle = amplitudeTitle * Math.sin(frequencyTitle * (xTitle + phaseTitle));
         const zTitle = (xTitle / widthTitle) * 50;
 
